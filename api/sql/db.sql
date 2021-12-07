@@ -23,6 +23,8 @@ create table usuario(
     foreign key (id_perfil_usuario) references perfil(id_perfil)
 ) default charset=utf8 auto_increment=1;
 
+insert into usuario(gl_token_usuario, gl_pass_usuario, gl_email_usuario, gl_nombres_usuario, gl_apellidos_usuario, gl_telefono_usuario, id_perfil_usuario, bo_habilitado_usuario) values ('5fc856171aeb7b1eb4ec0c19bbc9a223b38e11bb', '26c669cd0814ac40e5328752b21c4aa6450d16295e4eec30356a06a911c23983aaebe12d5da38eeebfc1b213be650498df8419194d5a26c7e0a50af156853c79', 'admin@correo.cl','Administrador', 'Proyectos', '', 1, 1);
+
 
 /* tabla ESTADO_PROYECTO */
 create table estado(
