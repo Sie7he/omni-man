@@ -1,7 +1,7 @@
 /* tabla PERFIL */
 create table perfil(
     id_perfil tinyint not null primary key,
-    gl_nombre_perfil varchar(20) not null,
+    gl_nombre_perfil varchar(50) not null,
     bo_habiltado_perfil tinyint(1) default 1
 ) default charset=utf8;
 
