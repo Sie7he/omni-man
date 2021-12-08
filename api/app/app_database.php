@@ -26,7 +26,7 @@ define('DB_PORT', '3306');
 define('DB_SCHEMA', '');
 
 /** nombre base de datos */
-define('DB_NAME', 'test_prescripcion_aps');
+define('DB_NAME', 'omicron');
 
 /** usuario de conexion  */
 define('DB_USER', 'root');
