@@ -66,6 +66,12 @@ class Usuarios extends \pan\Kore\Controller{
 
 		$params = $this->request->getParametros();
 
+		if (isset($params['token'])) {
+
+		} else {
+			
+		}
+
 		$this->response->toJson($response);die;
 	}
 
