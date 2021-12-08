@@ -69,7 +69,7 @@ class Usuarios extends \pan\Kore\Controller{
 
 
 	/**
-	 * Undocumented function
+	 * Deshabilitar usuario
 	 * {token}
 	 * @return void
 	 */
@@ -82,6 +82,17 @@ class Usuarios extends \pan\Kore\Controller{
 			$response['mensaje'] = 'Token no válido';
 			$this->response->toJson($response);die;
 		}
+
+		$this->_Usuario = new \Entities\Usuario;
+		if ($this->_Usuario->update(array('bo_habilitado_usuario' => 0),null, array('gl_token_usuario' => trim($params['token'])))) {
+			$response['correcto'] = true;
+			$response['mensaje'] = 'Usuario deshabilitado';
+		} else {
+			$response['correcto'] = false;
+			$response['mensaje'] = 'Problemas al deshabilitar usuario';
+		}
+
+		$this->response->toJson($response);die;
 	}
 
 }
