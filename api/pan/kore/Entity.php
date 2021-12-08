@@ -376,6 +376,8 @@ class Entity{
     {
         $query = "select * from " . $this->table;
 
+        $query = $this->checkJoins($query);
+
         if (!is_null($arguments)) {
             if (is_string($arguments)) {
                 $query .= ' ' . $arguments;
@@ -390,7 +392,10 @@ class Entity{
         if (!$pk)
             return null;
 
-        $query = 'select * from ' . $this->table . ' where ' . $this->primary_key . ' = ?  limit 1';
+        $query = 'select * from ' . $this->table;
+        
+        $query = $this->checkJoins($query);
+        $query = $query . ' where ' . $this->primary_key . ' = ?  limit 1';
         return $this->db->getQuery($query, $pk)->runQuery()->getRows(0);
 
     }
