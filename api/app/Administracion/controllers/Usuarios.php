@@ -64,6 +64,8 @@ class Usuarios extends \pan\Kore\Controller{
 	{
 		$response = array();
 
+		$params = $this->request->getParametros();
+
 		$this->response->toJson($response);die;
 	}
 
