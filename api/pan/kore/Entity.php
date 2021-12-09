@@ -326,6 +326,8 @@ class Entity{
 
         $query .= ' from ' . $this->table;
 
+        $query = $this->checkJoins($query);
+
         $params = array();
         if (is_array($where) and count($where) > 0) { 
             $query .= ' where ';
