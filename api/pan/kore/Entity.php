@@ -22,6 +22,10 @@ class Entity{
 
     protected $_manyToMany = array();
 
+    protected $joins = array();
+
+    protected $arr_joins = array();
+    
 
 	public function __construct($_entity=null){
         $this->db = new \Pan\Db\DbQueryBuilder();
@@ -454,6 +458,46 @@ class Entity{
 
         return $this->db->getQuery($query, $params)->runQuery()->getRows(0)->total;
 
+    }
+
+
+    /**
+     * Agrega los joins definidos en la entidad
+     *
+     * @param string|array $alias
+     * @return this
+     */
+    public function join($alias = null)
+    {
+        if (is_string($alias)) {
+            if (isset($this->joins[$alias])) {
+                $this->arr_joins[] = $alias;
+            }
+        } elseif (is_array($alias)) {
+            if (count($alias) > 0) {
+                foreach ($alias as $a) {
+                    if (isset($this->joins[$a])) {
+                        $this->arr_joins[] = $a;
+                    }
+                }
+            }
+        }
+        
+
+        return $this;
+    }
+
+
+    private function checkJoins($query)
+    {
+        if (isset($this->arr_joins) and count($this->arr_joins) > 0) {
+            foreach ($this->arr_joins as $alias) {
+                $query .= ' ' . $this->joins[$alias] . ' ';
+            }
+            $this->arr_joins = array();
+        }
+
+        return $query;
     }
 
 }

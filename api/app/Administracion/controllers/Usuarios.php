@@ -41,7 +41,7 @@ class Usuarios extends \pan\Kore\Controller{
 			$parametros['gl_token_usuario'] = trim($token);
 		}
 		$usuarios = $this->_Usuario->join('perfil')->where($parametros)->runQuery()->getRows();
-		$response['usuarios'] = array();
+		
 		if ($usuarios) {
 			foreach ($usuarios as $usuario) {
 				$response[] = array(
