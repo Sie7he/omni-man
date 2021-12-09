@@ -44,7 +44,7 @@ class Usuarios extends \pan\Kore\Controller{
 		$response['usuarios'] = array();
 		if ($usuarios) {
 			foreach ($usuarios as $usuario) {
-				$response['usuarios'][] = array(
+				$response[] = array(
 					'token' => $usuario->gl_token_usuario,
 					'nombres' => $usuario->gl_nombres_usuario,
 					'apellidos' => $usuario->gl_apellidos_usuario,
