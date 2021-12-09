@@ -19,9 +19,33 @@ export const Navbar = () => {
                             activeClassName="active"
                             className="nav-item nav-link"
                             exact
-                            to="/home"
+                            to="/login"
                         >
-                            Inicio
+                            Login
+                        </NavLink>
+                        <NavLink
+                            activeClassName="active"
+                            className="nav-item nav-link"
+                            exact
+                            to="/user"
+                        >
+                            Usuario
+                        </NavLink>
+                        <NavLink
+                            activeClassName="active"
+                            className="nav-item nav-link"
+                            exact
+                            to="/proyect"
+                        >
+                            Proyectos
+                        </NavLink>
+                        <NavLink
+                            activeClassName="active"
+                            className="nav-item nav-link"
+                            exact
+                            to="/task"
+                        >
+                            Tareas
                         </NavLink>
 
                    </div>

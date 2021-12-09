@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const LoginScreen = () => {
+export const UserScreen = () => {
     return (
         <div>
-            <h1>Login</h1>
+            <h1>Usuario Crud</h1>
         </div>
     )
 }

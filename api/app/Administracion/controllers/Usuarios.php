@@ -25,7 +25,13 @@ class Usuarios extends \pan\Kore\Controller{
 	}
 
 
-	public function getUsuario($token = null) 
+	/**
+	 * obtener listado de usuarios
+	 *
+	 * @param [type] $token
+	 * @return json
+	 */
+	public function get($token = null) 
 	{
 		$response = array();
 		
@@ -81,7 +87,7 @@ class Usuarios extends \pan\Kore\Controller{
 		$params = $this->resquest->getParametros();
 		if (!isset($params['token'])) {
 			$response['correcto'] = false;
-			$response['mensaje'] = 'Parametro no valido';
+			$response['mensaje'] = 'Token no válido';
 			$this->response->toJson($response);die;
 		}
 
