@@ -32,7 +32,7 @@ define('DB_NAME', 'test_prescripcion_aps');
 define('DB_USER', 'root');
 
 /** password de conexion */
-define('DB_PASS', 'pass');
+define('DB_PASS', 'mysql123');
 
 define('DB_CHARSET', 'utf8');
 
