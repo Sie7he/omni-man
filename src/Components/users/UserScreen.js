@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react';
+import { UserData } from './UserData';
 
 export const UserScreen = () => {
+
+
     return (
         <div>
-            <h1>Usuario Crud</h1>
+           <UserData />
         </div>
     )
 }
