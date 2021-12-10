@@ -13,7 +13,7 @@ export const UserData = () => {
 
         const getUser = async () =>{
 
-          const url =  'http://localhost/omicron/api/index.php/Administracion/Usuarios/get'
+          const url =  '/omicron/api/index.php/Administracion/Usuarios/get'
           const resp = await fetch(url);
           const data = await resp.json();
           const aaa = JSON.stringify(data);
