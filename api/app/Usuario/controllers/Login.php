@@ -47,9 +47,10 @@ class Login extends \pan\Kore\Controller{
 			$response['mensaje'] = 'Password vacío. Debe ingresar su password';
 			$this->response->toJson($response); die;
 		}
-
+		
 		$this->_Usuario = new \Entities\Usuario;
-		$usuario = $this->_Usuario->where(array('bo_habilitado_usuario' => 1, 'gl_email_usuario' => trim($params['email']), 'gl_ass_usuario' => \Pan\Utils\HashPan::passwordHash($params['pass'])))->runQuery()->getRows(0);
+		$usuario = $this->_Usuario->where(array('bo_habilitado_usuario' => 1, 'gl_email_usuario' => trim($params['email']), 'gl_pass_usuario' => \Pan\Utils\HashPan::getSha512($params['pass'])))->runQuery()->getRows(0);
+		
 		if (!$usuario) {
 			$response['correcto'] = false;
 			$response['mensaje'] = 'Usuario no válido';
