@@ -19,7 +19,7 @@ export const LoginScreen = () => {
     async function login() {
         
         let item = {email,password};
-        let result = await fetch("http://localhost/omicron/api/index.php/Administracion/Usuarios/get",{
+        let result = await fetch("/api/index.php/Administracion/Usuarios/get",{
             method:'POST',
             headers:{
                 "Content-Type":"application/json",
