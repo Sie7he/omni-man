@@ -4,7 +4,7 @@ namespace App\Usuario;
 
 
 
-class Login extends \pan\Kore\Controller{
+class Login extends \pan\Kore\Api{
 
 	/**
 	 * Undocumented variable
