@@ -27,10 +27,10 @@ class Login extends \pan\Kore\Api{
 	public function loginUsuario()
 	{
 		$params = $this->request->getParametros();
-
+		
 		$response = array();
 
-		if (!isset($params['email']) or !isset($params['pass'])) {
+		if (!isset($params['email']) or !isset($params['password'])) {
 			$response['correcto'] = false;
 			$response['mensaje'] = 'Parámetros no válidos';
 			$this->response->toJson($response); die;
@@ -42,14 +42,14 @@ class Login extends \pan\Kore\Api{
 			$this->response->toJson($response); die;
 		}
 
-		if ($params['pass'] === '') {
+		if ($params['password'] === '') {
 			$response['correcto'] = false;
 			$response['mensaje'] = 'Password vacío. Debe ingresar su password';
 			$this->response->toJson($response); die;
 		}
 		
 		$this->_Usuario = new \Entities\Usuario;
-		$usuario = $this->_Usuario->where(array('bo_habilitado_usuario' => 1, 'gl_email_usuario' => trim($params['email']), 'gl_pass_usuario' => \Pan\Utils\HashPan::getSha512($params['pass'])))->runQuery()->getRows(0);
+		$usuario = $this->_Usuario->where(array('bo_habilitado_usuario' => 1, 'gl_email_usuario' => trim($params['email']), 'gl_pass_usuario' => \Pan\Utils\HashPan::getSha512($params['password'])))->runQuery()->getRows(0);
 		
 		if (!$usuario) {
 			$response['correcto'] = false;
@@ -65,6 +65,7 @@ class Login extends \pan\Kore\Api{
 			);
 		}
 
+		
 		$this->response->toJson($response); die;
 
 	}
