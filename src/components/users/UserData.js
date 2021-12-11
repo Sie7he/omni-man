@@ -13,11 +13,11 @@ export const UserData = () => {
 
         const getUser = async () =>{
 
-          const url =  '/omicron/api/index.php/Administracion/Usuarios/get'
+          const url =  process.env.REACT_APP_API+'/Administracion/Usuarios/get'
           const resp = await fetch(url);
           const data = await resp.json();
-          const aaa = JSON.stringify(data);
-          console.log('Response: ', aaa)
+          setUser(JSON.stringify(data));
+          console.log('Response: ', user);
         }
   
     return <div>{user}</div>

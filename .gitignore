@@ -25,3 +25,4 @@ yarn-error.log*
 # pandemolde
 api/app/app_database.php
 api/app/app_config.php
+.env

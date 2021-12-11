@@ -4,7 +4,7 @@ namespace App\Administracion;
 
 
 
-class Usuarios extends \pan\Kore\Controller{
+class Usuarios extends \pan\Kore\Api{
 
 	/**
 	 * Undocumented variable
