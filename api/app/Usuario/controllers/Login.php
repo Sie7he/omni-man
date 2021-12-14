@@ -53,7 +53,7 @@ class Login extends \pan\Kore\Api{
 		}
 		
 		$this->_Usuario = new \Entities\Usuario;
-		$usuario = $this->_Usuario->where(array('bo_habilitado_usuario' => 1, 'gl_email_usuario' => trim($params['email']), 'gl_pass_usuario' => \Pan\Utils\HashPan::getSha512($params['password'])))->runQuery()->getRows(0);
+		$usuario = $this->_Usuario->join('perfil')->where(array('bo_habilitado_usuario' => 1, 'gl_email_usuario' => trim($params['email']), 'gl_pass_usuario' => \Pan\Utils\HashPan::getSha512($params['password'])))->runQuery()->getRows(0);
 		
 		if (!$usuario) {
 			$response['correcto'] = false;
@@ -66,6 +66,8 @@ class Login extends \pan\Kore\Api{
 				'token' => $usuario->gl_token_usuario,
 				'nombres' => $usuario->gl_nombres_usuario,
 				'apellidos' => $usuario->gl_apellidos_usuario,
+				'perfil' => $usuario->gl_nombre_perfil,
+				'perfil_id' => $usuario->id_perfil_usuario
 			);
 		}
 
