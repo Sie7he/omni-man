@@ -28,27 +28,14 @@ export const LoginScreen = () => {
         _form.append('pass',password);*/
         let result = await fetch(process.env.REACT_APP_API + "/Usuario/Login/loginUsuario",{
             method:"POST",
-            mode: "no-cors",
-            headers:{
-                     "Content-Type" : "application/json",
-                     "Accept": "application/json",
-                    
-            },
+      
             body:JSON.stringify(item)
         });
         
         
         console.log(result)
-        if (result.error){
-            console.log(JSON.stringify(item))
-            setError(result.error)
-            console.log(error)
-        } else
-        {
-            localStorage.setItem("user-info",result);
-            navigate('/user');
-        }
-       
+        result = await result.json();
+        console.log(result)
 
     }
 
