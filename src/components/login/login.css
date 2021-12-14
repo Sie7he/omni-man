@@ -5,10 +5,10 @@ body{
 }
 
 section{
-    display: flex;
+    display: flex ;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 70vh;
     background: linear-gradient(to bottom,#f1f4f9,#dff1ff);
 }
 
@@ -18,13 +18,7 @@ section .color
     filter: blur(150px)
 }
 
-section .color:nth-child(1)
-{
-    top: -350px;
-    width: 100%;
-    height: 70%;
-    background-color: #35ff68;
-}
+
 
 section .color:nth-child(2)
 {
@@ -60,7 +54,7 @@ section .color:nth-child(3)
     background: rgba(255,255,255,0.1);
     border-radius: 10px;
     animation: animate 10s linear infinite;
-    animation-delay: calc(-1s ) ;
+    animation-delay: calc(-1s * var(--i) ) ;
 }
 
 @keyframes animate
@@ -120,7 +114,7 @@ section .color:nth-child(3)
     height: 60px;
    
 }
-.container
+.contenedor-login
 {
     position: relative;
     width: 400px;
@@ -195,8 +189,16 @@ section .color:nth-child(3)
     color: #fff;
 }
 
-.form .inputBox input[type="submit"]
-{
+.btn-login
+{   
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 16px;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    width: 100%;
+    border-radius: 35px;
     background: #fff;
     color: #667;
     max-width: 100px;
