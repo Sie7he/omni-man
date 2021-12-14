@@ -28,14 +28,18 @@ export const LoginScreen = () => {
         _form.append('pass',password);*/
         let result = await fetch(process.env.REACT_APP_API + "/Usuario/Login/loginUsuario",{
             method:"POST",
-      
+        
             body:JSON.stringify(item)
         });
         
         
-        console.log(result)
         result = await result.json();
-        console.log(result)
+        console.log(result);
+        if(!result.correcto){
+            console.log(result.mensaje)
+        } else{
+            navigate('/user')
+        }
 
     }
 
