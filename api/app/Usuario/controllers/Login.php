@@ -70,7 +70,7 @@ class Login extends \pan\Kore\Api{
 		}
 
 		
-		$this->response->toJson($response); die;
+		$this->response->toJson($response);
 
 	}
 

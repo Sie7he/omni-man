@@ -12,7 +12,7 @@ class Response {
      */
     static function toJson($json = null)
     {
-        header('Content-type: application/json; charset=UTF-8');
+        header('Content-type:application/json; charset=UTF-8');
         echo \pan\Utils\JsonPan::enc_json($json);
     }
 

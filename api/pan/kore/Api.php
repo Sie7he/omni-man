@@ -36,11 +36,11 @@ abstract class Api {
         $this->load = new Loader();
 
 
-        /* header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Origin: *');
 		header ("Access-Control-Expose-Headers: Content-Length, X-JSON");
 		header ("Access-Control-Allow-Methods: GET, POST");
 		header ("Access-Control-Allow-Headers: Content-Type, Authorization, Accept, Accept-Language, X-Authorization");
-		header('Access-Control-Max-Age: 86400'); */
+		header('Access-Control-Max-Age: 86400');
 
 	}
 }
