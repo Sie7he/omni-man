@@ -66,12 +66,37 @@ class Usuarios extends \pan\Kore\Api{
 
 		$params = $this->request->getParametros();
 
-		if (isset($params['token'])) {
+		$this->_Usuario = new \Entities\Usuario;
 
+		$data = array(
+			'gl_nombres_usuario' => $params['nombres'],
+			'gl_apellidos_usuario' => $params['apellidos'],
+			'id_perfil_usuario' => $params['perfil'],
+			'gl_email_usuario' => $params['email'],
+			'gl_telefono_usuario' => $params['telefono'],
+		);
+
+		$token = false;
+		if (isset($params['token'])) {
+			if ($this->_Usuario->update($data, null, array('gl_token_usuario' => $params['token']))) {
+				$token = $params['token'];
+			}
 		} else {
-			
+			$id = $this->_Usuario->create($data);
+			if ($id) {
+				$usuario = $this->_Usuario->getByPK($id);
+				$token = $usuario->gl_token_usuario;
+			}
 		}
 
+		if ($token) {
+			$response['correcto'] = true;
+			$response['mensaje'] = 'Datos de usuario guardados correctamente';
+		} else {
+			$response['correcto'] = false;
+			$response['mensaje'] = 'Hubo un problema al guardar los datos del usuario';
+		}
+		
 		$this->response->toJson($response);die;
 	}
 
