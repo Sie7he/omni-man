@@ -10,8 +10,7 @@ function App() {
     <div>
       <Navbar />
        <div className='container-app'>
-         
-          <Outlet />
+         <Outlet />
         </div>
     </div>
   );

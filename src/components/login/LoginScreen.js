@@ -5,13 +5,11 @@ import { Navbar } from '../ui/Navbar';
 import './login.css';
 
 
-export const LoginScreen = () => {
+export const LoginScreen = ( {history}) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-
-
     const navigate = useNavigate();
 
     /*useEffect(() => {
@@ -22,11 +20,11 @@ export const LoginScreen = () => {
     }, []);*/
 
     async function login() {
+
+       
         
         let item = {email,password};
-        /*let _form = new FormData();
-        _form.append('email', email);
-        _form.append('pass',password);*/
+
         let result = await fetch(process.env.REACT_APP_API + "/Usuario/Login/loginUsuario",{
             method:"POST",
         
