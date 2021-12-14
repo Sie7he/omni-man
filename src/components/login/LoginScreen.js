@@ -22,21 +22,18 @@ export const LoginScreen = () => {
     async function login() {
         
         let item = {email,password};
-       /* let _form = new FormData();
+        let _form = new FormData();
         _form.append('email', email);
-        _form.append('pass',password)*/
+        _form.append('pass',password)
         let result = await fetch(process.env.REACT_APP_API + "/Usuario/Login/loginUsuario",{
             method:"POST",
-            headers:{
-                 "Content-Type":"application/json", 
-                 "Accept":"application/json",       
-            },
-            body:JSON.stringify(item)
+           
+            body:_form
         });
         result = await result.json();
         localStorage.setItem("user-info",JSON.stringify(result));
         console.log(JSON.stringify(item))
-        navigate("/user");
+        navigate('succes');
 
     }
 
