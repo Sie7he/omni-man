@@ -8,6 +8,7 @@ export const LoginScreen = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
 
     const navigate = useNavigate();
@@ -22,18 +23,32 @@ export const LoginScreen = () => {
     async function login() {
         
         let item = {email,password};
-        let _form = new FormData();
+        /*let _form = new FormData();
         _form.append('email', email);
-        _form.append('pass',password)
+        _form.append('pass',password);*/
         let result = await fetch(process.env.REACT_APP_API + "/Usuario/Login/loginUsuario",{
             method:"POST",
-           
-            body:_form
+            mode: "no-cors",
+            headers:{
+                     "Content-Type" : "application/json",
+                     "Accept": "application/json",
+                    
+            },
+            body:JSON.stringify(item)
         });
-        result = await result.json();
-        localStorage.setItem("user-info",JSON.stringify(result));
-        console.log(JSON.stringify(item))
-        navigate('succes');
+        
+        
+        console.log(result)
+        if (result.error){
+            console.log(JSON.stringify(item))
+            setError(result.error)
+            console.log(error)
+        } else
+        {
+            localStorage.setItem("user-info",result);
+            navigate('/user');
+        }
+       
 
     }
 
