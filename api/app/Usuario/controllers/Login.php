@@ -27,6 +27,10 @@ class Login extends \pan\Kore\Api{
 	public function loginUsuario()
 	{
 		$params = $this->request->getParametros();
+
+		$inputJSON = file_get_contents('php://input');
+		$params = json_decode($inputJSON, true); 
+		
 		
 		$response = array();
 

@@ -26,6 +26,7 @@ export const LoginScreen = () => {
         _form.append('email', email);
         _form.append('pass',password)*/
         console.log(email, " ", password);
+        console.log(process.env.REACT_APP_API);
         let result = await fetch(process.env.REACT_APP_API + "/Usuario/Login/loginUsuario",{
             method:'POST',
             mode:'no-cors',
