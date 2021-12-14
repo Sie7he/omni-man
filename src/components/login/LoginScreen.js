@@ -8,6 +8,7 @@ export const LoginScreen = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
 
     const navigate = useNavigate();
@@ -22,26 +23,19 @@ export const LoginScreen = () => {
     async function login() {
         
         let item = {email,password};
-       /* let _form = new FormData();
+        /*let _form = new FormData();
         _form.append('email', email);
-        _form.append('pass',password)*/
-        console.log(email, " ", password);
-        console.log(process.env.REACT_APP_API);
+        _form.append('pass',password);*/
         let result = await fetch(process.env.REACT_APP_API + "/Usuario/Login/loginUsuario",{
-            method:'POST',
-            mode:'no-cors',
-            headers:{
-                 "Content-Type":"application/json", 
-                 "Accept":"application/json", 
-                 
-            },
-            body: JSON.stringify(item)
+            method:"POST",
+      
+            body:JSON.stringify(item)
         });
-        result= await result.text();
-        console.log(result);
-        localStorage.setItem("user-info",JSON.stringify(result));
         
-        navigate("/user");
+        
+        console.log(result)
+        result = await result.json();
+        console.log(result)
 
     }
 
@@ -79,8 +73,8 @@ export const LoginScreen = () => {
 
                 <input 
                     type='password'
-                    name='pass'
-                    placeholder='Ingrese su correo'
+                    name='password'
+                    placeholder='Ingrese su contraseña'
                     className='form-control'
                     onChange={(e)=> setPassword(e.target.value)}
                />
