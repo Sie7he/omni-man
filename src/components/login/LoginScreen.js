@@ -37,7 +37,7 @@ export const LoginScreen = () => {
             },
             body: JSON.stringify(item)
         });
-        result= await result.json();
+        result= await result.text();
         console.log(result);
         localStorage.setItem("user-info",JSON.stringify(result));
         
