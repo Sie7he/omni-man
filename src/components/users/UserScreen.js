@@ -3,15 +3,13 @@ import { UserData } from './UserData';
 
 export const UserScreen = () => {
 
+    
 
     return (
-        <div>
+        <div className= "container"> 
            <UserData />
            <h1>Gestión de Usuarios</h1>
 
-<div className= "container">
-    <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="create-user" > + </button>
-</div>
  <div>
 
  </div>
@@ -65,7 +63,7 @@ export const UserScreen = () => {
         </tbody>
     </table>
 </div>
-<button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button  type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
  </button>
         </div>
     )

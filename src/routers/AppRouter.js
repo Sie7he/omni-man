@@ -1,27 +1,34 @@
-import React from 'react'
-import { HomeScreen } from '../components/home/HomeScreen'
+import React from 'react';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { LoginScreen } from '../components/login/LoginScreen';
+import { DashboardRoute } from './DashboardRoute';
+import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
+
 
 export const AppRouter = () => {
-    return (
-        <>
-            <Navbar />
+  return (
+    <BrowserRouter>
 
-            <div className='container'>
-
-                <Routes>
-
-                    <Route path="/" element={<HomeScreen />} />
-                    <Route path="login" element={<LoginScreen />} />
-                    <Route path="proyect" element={<ProyectScreen />} />
-                    <Route path="user" element={<UserScreen />} />
-                    <Route path="task" element={<TaskScreen />} />
+      <Routes>
 
 
+        <Route path="/login" element={
 
-                </Routes>
+          <PublicRoute>
+            <LoginScreen />
+          </PublicRoute>
+        } />
 
-            </div>
+        <Route path="/*" element={
 
-        </>
-    )
+          <PrivateRoute>
+            <DashboardRoute />
+          </PrivateRoute>
+        } />
+
+      </Routes>
+
+    </BrowserRouter>
+  )
 }

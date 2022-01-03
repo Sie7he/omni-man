@@ -1,60 +1,78 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+
 
 export const Navbar = () => {
-    return (
-        <div className="navbar navbar-expand-lg navbar-light bg-light">
-           <div className='container'>
-           <Link 
-                className="navbar-brand"
-                to="/"
-            >
-                Omicron
-            </Link>
 
-            
-               <div  className="navbar-collapse">
-                   <div className="navbar-nav">
-                        <NavLink
-                            activeClassName="active"
-                            className="nav-item nav-link"
-                            exact
-                            to="/login"
-                        >
-                            Login
-                        </NavLink>
-                        <NavLink
-                            activeClassName="active"
-                            className="nav-item nav-link"
-                            exact
-                            to="/user"
-                        >
-                            Usuario
-                        </NavLink>
-                        <NavLink
-                            activeClassName="active"
-                            className="nav-item nav-link"
-                            exact
-                            to="/proyect"
-                        >
-                            Proyectos
-                        </NavLink>
-                        <NavLink
-                            activeClassName="active"
-                            className="nav-item nav-link"
-                            exact
-                            to="/task"
-                        >
-                            Tareas
-                        </NavLink>
 
-                   </div>
-                   
-                   
-                </div> 
-         
-               </div> 
-           
-        </div>
-    )
+
+    const navigate = useNavigate();
+    
+    const handleLogout = () => {
+        localStorage.removeItem("usuario");
+        navigate('/login')
+    }
+
+        return (
+            <div className="navbar navbar-expand-lg navbar-light bg-light">
+               <div className='container'>
+               <Link 
+                    className="navbar-brand"
+                    to="/"
+                >
+                    Omicron
+                </Link>
+       
+                
+                   <div  className="navbar-collapse">
+                       <div className="navbar-nav">
+                           
+                            <NavLink
+                                activeClassName="active"
+                                className="nav-item nav-link"
+                                exact
+                                to="/user"
+                            >
+                                Usuario
+                            </NavLink>
+                            <NavLink
+                                activeClassName="active"
+                                className="nav-item nav-link"
+                                exact
+                                to="/proyect"
+                            >
+                                Proyectos
+                            </NavLink>
+                            <NavLink
+                                activeClassName="active"
+                                className="nav-item nav-link"
+                                exact
+                                to="/task"
+                            >
+                                Tareas
+                            </NavLink>
+    
+                            <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
+                    <ul className="navbar-nav ml-auto">
+                       
+                        
+                        <button 
+                            className="nav-item nav-link btn" 
+                            onClick={ handleLogout }
+                        >
+                            Logout
+                        </button>
+                    </ul>
+                </div>
+                       </div>
+                       
+                       
+                    </div> 
+             
+                   </div> 
+               
+            </div>
+        )
+    
+   
 }

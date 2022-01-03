@@ -1,15 +1,11 @@
-import React, { useEffect,useState } from 'react'
+import React, { useState } from 'react'
 
 
 export const UserData = () => {
  
     const [user, setUser] = useState([])
 
-
-    useEffect(() => {
-        console.log('useEffect');
-        getUser()
-    }, [])
+     
 
         const getUser = async () =>{
 
@@ -19,7 +15,7 @@ export const UserData = () => {
           setUser(JSON.stringify(data));
           console.log('Response: ', user);
         }
-  
+        getUser();
     return <div>{user}</div>
 
 }

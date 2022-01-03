@@ -1,14 +1,3 @@
-import { Outlet } from "react-router";
-import { LoginScreen } from "../components/login/LoginScreen";
+import { createContext } from "react";
 
-const useAuth = () => {
-    const user = { loggedIn: false};
-    return user && user.loggedIn
-};
-
-const ProtectedRoutes = () => {
-    const isAuth = useAuth();
-    return isAuth ? <Outlet /> : <LoginScreen />
-}
-
-export default ProtectedRoutes;
+export const AuthContext = createContext();
