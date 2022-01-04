@@ -1,72 +1,86 @@
-import React, {useState} from 'react';
-import { UserData } from './UserData';
+import React, {useEffect, useState} from 'react';
+import MaterialTable from 'material-table';
+import axios from 'axios';
+//import { getUser } from './UserData';
+import {Modal, TextField, Button} from '@material-ui/core';
+import { makeStyles} from '@material-ui/styles';
+
+
+
+
+const baseUrl = process.env.REACT_APP_API+'/Administracion/Usuarios/get'
+
 
 export const UserScreen = () => {
+    
+
+    const [data,setData]=useState([]);
+    const [modalInsertar,setModalInsertar]=useState(false);
+    const peticionGet = async() =>{
+        await axios.get(baseUrl)
+        .then(response =>{
+            setData(response.data); 
+            //console.log(response.data);       
+        })
+    }
+
+    useEffect(() =>{
+        peticionGet();
+
+    }, [])
 
 
-    return (
-        <div>
-           <UserData />
-           <h1>Gestión de Usuarios</h1>
-
-<div className= "container">
-    <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="create-user" > + </button>
-</div>
- <div>
-
- </div>
-
-<div>
-    <table className="table table-hover">
-        <thead>
-            <th>id</th>
-            <th>token</th>
-            <th>pass</th>
-            <th>email</th>
-            <th>nombres</th>
-            <th>apellidos</th>
-            <th>telefono</th>
-            <th>perfil</th>
-            <th>habilitado</th>
-            <th>opciones</th>
-        </thead>
-        <tbody>
-            <td>
-                <tr>a</tr>
-            </td>
-            <td>
-                <tr>a</tr>
-            </td>
-            <td>
-                <tr>a</tr>
-            </td>
-            <td>
-                <tr>a</tr>
-            </td>
-            <td>
-                <tr>a</tr>
-            </td>
-            <td>
-                <tr>a</tr>
-            </td>
-            <td>
-                <tr>a</tr>
-            </td>
-            <td>
-                <tr>a</tr>
-            </td>
-            <td>
-                <tr>a</tr>
-            </td>
-            <td>
-                <button type="button" className="btn btn-primary">Aasd</button>
-                <button type="button" className="btn btn-danger">Eda</button>
-            </td>
-        </tbody>
-    </table>
-</div>
-<button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
- </button>
+    const  columnas =[
+        {
+            title: 'Id',
+            field: 'perfil_id',
+            type: 'numeric'
+        },
+        {
+            title: 'Perfil',
+            field: 'perfil',
+        },
+        {
+            title: 'Nombres',
+            field: 'nombres',
+        },
+        {
+            title: 'Apellidos',
+            field: 'apellidos',
+        },
+        {
+            title: 'Correo',
+            field: 'email',
+        },
+        {
+            title: 'Token',
+            field: 'token',
+        },
+    ];
+    
+    return (  
+        <div className='UserScreen'> 
+            <br></br>
+            <Button>Insertar</Button>
+            <br></br>
+            <MaterialTable
+                columns={columnas}
+                data={data}
+                title= 'Gestión de usuarios'
+                actions={[
+                    {
+                    icon:'',
+                    tooltip: 'Editar',
+                    onClick: (event,rowData) => alert('has presionado editar ' + rowData.artista)
+                   },
+                   {
+                    icon:'delete',
+                    tooltip: 'Eliminar',
+                    onClick: (event,rowData) => alert('has presionado Eliminar ' + rowData.artista)
+                   },
+                ]}
+                options={{actionsColumnIndex: -1}}
+            />
         </div>
-    )
+     )
 }
