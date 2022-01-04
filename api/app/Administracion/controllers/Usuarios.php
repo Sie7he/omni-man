@@ -77,13 +77,18 @@ class Usuarios extends \pan\Kore\Api{
 		);
 
 		$token = false;
+		$enviar_email = false;
 		if (isset($params['token'])) {
 			if ($this->_Usuario->update($data, null, array('gl_token_usuario' => $params['token']))) {
 				$token = $params['token'];
 			}
 		} else {
+			$pass = \Pan\Utils\HashPan::randomPass();
+			$hash = \Pan\Utils\HashPan::getSha512($pass);
+			$data['gl_pass_usuario'] = $hash;
 			$id = $this->_Usuario->create($data);
 			if ($id) {
+				$enviar_email = true;
 				$usuario = $this->_Usuario->getByPK($id);
 				$token = $usuario->gl_token_usuario;
 			}
@@ -92,6 +97,15 @@ class Usuarios extends \pan\Kore\Api{
 		if ($token) {
 			$response['correcto'] = true;
 			$response['mensaje'] = 'Datos de usuario guardados correctamente';
+			if ($enviar_email) {
+				$mensaje = '<h3>Omicron Project Manager - Registro</h3>';
+				$mensaje .= 'Sus datos de acceso son:';
+				$mensaje .= '<p>usuario : ' . $params['email'] . '</p>';
+				$mensaje .= '<p>password : ' . $pass . '</p>';
+				$mail = new \Email($params['email'],'Registro Omicron Project Manager');
+				$mail->send();
+				$mail = null;
+			}
 		} else {
 			$response['correcto'] = false;
 			$response['mensaje'] = 'Hubo un problema al guardar los datos del usuario';
