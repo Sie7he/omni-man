@@ -59,17 +59,22 @@ export const UserScreen = () => {
     ];
     
     return (  
-        <div className='UserScreen'> 
+        <div className='container'> 
             <br></br>
             <Button>Insertar</Button>
             <br></br>
             <MaterialTable
                 columns={columnas}
+                editable={{
+                    onRowAdd:(newRow) => new Promise((resolve,reject) => {
+
+                    })
+                }}
                 data={data}
                 title= 'Gestión de usuarios'
                 actions={[
                     {
-                    icon:'',
+                    icon:'edit',
                     tooltip: 'Editar',
                     onClick: (event,rowData) => alert('has presionado editar ' + rowData.artista)
                    },
