@@ -8,5 +8,8 @@ class Perfil extends \pan\Kore\Entity{
 
 	protected $primary_key = 'id_perfil';
 
+	
+	const ADMINISTRADOR = 1;
+	const COLABORADOR = 2;
 
 }

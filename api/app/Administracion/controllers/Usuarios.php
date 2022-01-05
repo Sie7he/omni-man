@@ -142,4 +142,35 @@ class Usuarios extends \pan\Kore\Api{
 		$this->response->toJson($response);die;
 	}
 
+
+	/**
+	 * Obtener listado de colaboradores
+	 *
+	 * @return void
+	 */
+	public function getColaboradores()
+	{
+		$response = array();
+		
+		$this->_Usuario = new \Entities\Usuario;
+		$parametros = array('bo_habilitado_usuario' => 1, 'id_perfil_usuario' => \Entities\Perfil::COLABORADOR);
+		
+		$usuarios = $this->_Usuario->join('perfil')->where($parametros)->runQuery()->getRows();
+		
+		if ($usuarios) {
+			foreach ($usuarios as $usuario) {
+				$response[] = array(
+					'token' => $usuario->gl_token_usuario,
+					'nombres' => $usuario->gl_nombres_usuario,
+					'apellidos' => $usuario->gl_apellidos_usuario,
+					'email' => $usuario->gl_email_usuario,
+					'perfil' => $usuario->gl_nombre_perfil,
+					'perfil_id' => $usuario->id_perfil
+				);
+			}
+		}
+		
+		$this->response->toJson($response);
+	}
+
 }
