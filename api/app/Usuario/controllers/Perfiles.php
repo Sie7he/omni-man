@@ -4,7 +4,7 @@ namespace App\Usuario;
 
 
 
-class Perfiles extends \pan\Kore\Controller{
+class Perfiles extends \pan\Kore\Api{
 
 	/**
 	 * Undocumented variable
