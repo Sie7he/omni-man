@@ -4,13 +4,12 @@ import axios from 'axios';
 //import { getUser } from './UserData';
 import {Modal, TextField, Button} from '@material-ui/core';
 import { makeStyles} from '@material-ui/styles';
+import { Link } from 'react-router-dom';
 
 
 
 
 const baseUrl = process.env.REACT_APP_API+'/Administracion/Usuarios/get'
-
-
 export const UserScreen = () => {
     
 
@@ -61,7 +60,7 @@ export const UserScreen = () => {
     return (  
         <div className='container'> 
             <br></br>
-            <Button>Insertar</Button>
+           <Link to="/addUser">Agregar Usuario</Link>
             <br></br>
             <MaterialTable
                 columns={columnas}

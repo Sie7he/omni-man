@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import './login.css';
 
 
-export const LoginScreen = ( {history}) => {
+export const LoginScreen = ( {} ) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,7 +17,6 @@ export const LoginScreen = ( {history}) => {
        
         
         let item = {email,password};
-
         let result = await fetch(process.env.REACT_APP_API + "/Usuario/Login/loginUsuario",{
             method:"POST",
             body:JSON.stringify(item)
