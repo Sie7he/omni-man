@@ -105,7 +105,7 @@ class Usuarios extends \pan\Kore\Api{
 				$mensaje .= 'Sus datos de acceso son:';
 				$mensaje .= '<p>usuario : ' . $params['email'] . '</p>';
 				$mensaje .= '<p>password : ' . $pass . '</p>';
-				$mail = new \Email($params['email'],'Registro Omicron Project Manager');
+				$mail = new \Email($params['email'],'Registro Omicron Project Manager', $mensaje);
 				$mail->send();
 				$mail = null;
 			}

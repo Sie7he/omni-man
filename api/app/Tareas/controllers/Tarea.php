@@ -50,6 +50,16 @@ class Tarea extends \pan\Kore\Api{
 		} else {
 			$guardar = $this->_Tarea->create($data);
 		}
+
+		if ($guardar) {
+			$response['correcto'] = true;
+			$response['mensaje'] = 'Tarea guardada correctamente';
+		} else {
+			$response['correcto'] = false;
+			$response['mensaje'] = 'Problemas al guardar tarea. Intente nuevamente';
+		}
+
+		$this->response->toJson($response); die;
 	}
 
 
@@ -69,6 +79,33 @@ class Tarea extends \pan\Kore\Api{
 		}
 
 		$this->response->toJson($response); die;
+	}
+
+
+	public function cambiarEstado()
+	{
+		$inputJSON = file_get_contents('php://input');
+		$params = json_decode($inputJSON, true); 
+
+		$id_tarea = $params['tarea'];
+		$id_estado = $params['estado'];
+
+		$response = array();
+		$data = array(
+			'id_estado_tarea' => $id_estado
+		);
+
+		$this->_Tarea = new \Entities\Tarea;
+		if ($this->_Tarea->update($data, $id_tarea)) {
+			$response['correcto'] = true;
+			$response['mensaje'] = 'La tarea ha cambiado de estado';
+		} else {
+			$response['correcto'] = true;
+			$response['mensaje'] = 'La tarea ha cambiado de estado';
+		}
+
+		$this->response->toJson($response); die;
+		
 	}
 
 
