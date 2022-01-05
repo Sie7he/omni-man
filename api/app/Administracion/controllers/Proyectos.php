@@ -25,13 +25,18 @@ class Proyectos extends \pan\Kore\Controller{
 	}
 
 
-	public function get()
+	public function get($id = null)
 	{
 		$this->_Proyecto = new \Entities\Proyecto;
 
 		$response = array();
 
-		$proyectos = $this->_Proyecto->all();
+		if (!is_null($id)) {
+			$proyectos = $this->_Proyecto->join(array('estado', 'jp'))->where(array('id_proyecto' => $id))->runQuery()->getRows();
+		} else {
+			$proyectos = $this->_Proyecto->join(array('estado', 'jp'))->all();	
+		}
+		
 
 		if ($proyectos) {
 			foreach ($proyectos as $p) {
@@ -135,5 +140,8 @@ class Proyectos extends \pan\Kore\Controller{
 
 		$this->response->toJson($response); die;
 	}
+
+
+
 
 }

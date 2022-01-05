@@ -77,7 +77,7 @@ class Usuarios extends \pan\Kore\Api{
 			'gl_email_usuario' => $params['email'],
 			'gl_telefono_usuario' => $params['telefono'],
 		);
-
+		
 		$token = false;
 		$enviar_email = false;
 		if (isset($params['token'])) {
@@ -88,6 +88,7 @@ class Usuarios extends \pan\Kore\Api{
 			$pass = \Pan\Utils\HashPan::randomPass();
 			$hash = \Pan\Utils\HashPan::getSha512($pass);
 			$data['gl_pass_usuario'] = $hash;
+			$data['gl_token_usuario'] = sha1($params['email'] . date('YmdHis'));
 			$id = $this->_Usuario->create($data);
 			if ($id) {
 				$enviar_email = true;
