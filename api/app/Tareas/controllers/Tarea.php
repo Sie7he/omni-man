@@ -4,7 +4,7 @@ namespace App\Tareas;
 
 
 
-class Tarea extends \pan\Kore\Controller{
+class Tarea extends \pan\Kore\Api{
 
 	/**
 	 * Undocumented variable
@@ -27,7 +27,8 @@ class Tarea extends \pan\Kore\Controller{
 
 	public function save()
 	{
-		$params = $this->request->getParametros();
+		$inputJSON = file_get_contents('php://input');
+		$params = json_decode($inputJSON, true); 
 
 		$this->_Tarea = new \Entities\Tarea;
 		$this->_Usuario = new \Entities\Usuario;
@@ -49,6 +50,25 @@ class Tarea extends \pan\Kore\Controller{
 		} else {
 			$guardar = $this->_Tarea->create($data);
 		}
+	}
+
+
+	public function getPrioridades()
+	{
+		$_Prioridad = new \Entities\Prioridad;
+
+		$response = array();
+		$prioridades = $_Prioridad->all();
+		if ($prioridades) {
+			foreach ($prioridades as $p) {
+				$response[] = array(
+					'id' => $p->id_prioridad,
+					'nombre' => $p->gl_nombre_prioridad
+				);
+			}
+		}
+
+		$this->response->toJson($response); die;
 	}
 
 

@@ -52,7 +52,8 @@ class Proyectos extends \pan\Kore\Controller{
 
 	public function cambiarEstado()
 	{
-		$params = $this->request->getParametros();
+		$inputJSON = file_get_contents('php://input');
+		$params = json_decode($inputJSON, true); 
 
 		$this->_Proyecto = new \Entities\Proyecto;
 
@@ -74,7 +75,8 @@ class Proyectos extends \pan\Kore\Controller{
 
 	public function save()
 	{
-		$params = $this->request->getParametros();
+		$inputJSON = file_get_contents('php://input');
+		$params = json_decode($inputJSON, true); 
 
 		$response = array();
 
@@ -103,6 +105,32 @@ class Proyectos extends \pan\Kore\Controller{
 		} else {
 			$response['correcto'] = false;
 			$response['mensaje'] = 'Hubo problemas para guardar los datos';
+		}
+
+		$this->response->toJson($response); die;
+	}
+
+
+	public function getHitosProyecto()
+	{
+		$inputJSON = file_get_contents('php://input');
+		$params = json_decode($inputJSON, true); 
+
+		$id_proyecto = $params['proyecto'];
+
+		$_Hito = new \Entities\Hito;
+
+		$hitos = $_Hito->where(array('id_proyecto' => $id_proyecto))->runQuery()->getRows();
+
+		$response = array();
+		if ($hitos) {
+			foreach ($hitos as $h) {
+				$response[] = array(
+					'id' => $h->id_hito,
+					'proyecto' => $h->id_proyecto,
+					'nombre' => $h->gl_nombre_proyecto
+				);
+			}
 		}
 
 		$this->response->toJson($response); die;
