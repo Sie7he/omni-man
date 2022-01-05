@@ -64,7 +64,9 @@ class Usuarios extends \pan\Kore\Api{
 	{
 		$response = array();
 
-		$params = $this->request->getParametros();
+		//$params = $this->request->getParametros();
+		$inputJSON = file_get_contents('php://input');
+		$params = json_decode($inputJSON, true); 
 
 		$this->_Usuario = new \Entities\Usuario;
 
