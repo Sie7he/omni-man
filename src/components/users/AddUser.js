@@ -25,7 +25,6 @@ export const AddUser = () => {
     getPerfil();
 
     async function addUser() {
-        let perfil = 1
         let item = { nombres, apellidos, perfil, email, telefono };
         let result = await fetch(process.env.REACT_APP_API + "/Administracion/Usuarios/save", {
             method: "POST",
