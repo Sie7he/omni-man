@@ -26,9 +26,14 @@ export const LoginScreen = ( {} ) => {
         result = await result.json();
         if(!result.correcto){
             console.log(result.mensaje)
-        } else{
-           localStorage.setItem('usuario', result.usuario.nombres);
+        }else if(result.usuario.perfil_id==1){
+            localStorage.setItem('usuario', result.usuario.nombres);
+            localStorage.setItem('admin', result.usuario.id_perfil);
            navigate('/user');
+
+        }else if(result.usuario.perfil_id==2){
+           localStorage.setItem('usuario', result.usuario.nombres);
+           navigate('/');
         
         }
 

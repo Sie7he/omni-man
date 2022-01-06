@@ -7,12 +7,14 @@ export const Navbar = () => {
 
 
     const navigate = useNavigate();
-    
+    const adm = localStorage.getItem('admin');
     const handleLogout = () => {
-        localStorage.removeItem("usuario");
+        localStorage.clear();
         navigate('/login')
     }
 
+
+    if(adm) {
         return (
             <div className="navbar navbar-expand-lg navbar-light bg-light">
                <div className='container'>
@@ -52,7 +54,12 @@ export const Navbar = () => {
                                 Tareas
                             </NavLink>
     
-                            <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
+                         
+                       </div>
+                       
+                       
+                    </div> 
+                    <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                     <ul className="navbar-nav ml-auto">
                        
                         
@@ -64,15 +71,37 @@ export const Navbar = () => {
                         </button>
                     </ul>
                 </div>
-                       </div>
-                       
-                       
-                    </div> 
-             
                    </div> 
                
             </div>
         )
+    } else {
+        return (
+            <div className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className='container'>
+            <Link 
+                 className="navbar-brand"
+                 to="/"
+             >
+                 Omicron
+             </Link>
+             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
+                    <ul className="navbar-nav ml-auto">
+                       
+                        
+                        <button 
+                            className="nav-item nav-link btn" 
+                            onClick={ handleLogout }
+                        >
+                            Logout
+                        </button>
+                    </ul>
+                </div>
+             </div>
+             </div>
+        )
+    }
+        
     
    
 }
