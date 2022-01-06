@@ -1,59 +1,29 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import Modal from '../modals/Modal';
-import '../modals/modal.css';
+import React, { useState }  from "react";
+import  './modal.css';
+import { RiCloseLine } from "react-icons/ri";
 
-export const AddUser = () => {
-    const [isOpen, setIsOpen] = useState(false);
+const Modal = ({ setIsOpen }) => {
+
+
     const [nombres, setNombre] = useState('');
     const [apellidos, setApellido] = useState('');
     const [email, setEmail] = useState('');
     const [value, setValue] = useState([]);
     const [perfil, setPerfil] = useState('');
     const [telefono, setTelefono] = useState('');
-    const navigate = useNavigate();
 
- 
-
-    const getPerfil = async () => {
-        const url = process.env.REACT_APP_API + '/Usuario/Perfiles/get'
-        const resp = await fetch(url);
-        const data = await resp.json();
-        setValue(data);
-    }
-
-    getPerfil();
-
-    async function addUser() {
-        let item = { nombres, apellidos, perfil, email, telefono };
-        let result = await fetch(process.env.REACT_APP_API + "/Administracion/Usuarios/save", {
-            method: "POST",
-            body: JSON.stringify(item)
-        });
-        console.log(item)
-        result = await result.json();
-        if (!result.correcto) {
-            console.log(result.mensaje)
-        } else {
-            navigate('/user');
-
-        }
-    }
-
-    return (
-        <div>
-
-           
-            
-
-  
-      
-      <button className='primaryBtn' onClick={() => setIsOpen(true)}>
-        Open Modal
-      </button>
-      {isOpen && <Modal setIsOpen={setIsOpen} />}
-      
-
+  return (
+    <div className="container">
+      <div className='darkBG' onClick={() => setIsOpen(false)} />
+      <div className='centered'>
+        <div className='modalw'>
+          <div className='modalHeader'>
+            <h5 className='heading'>Dialog</h5>
+          </div>
+          <button className='closeBtn' onClick={() => setIsOpen(false)}>
+            <RiCloseLine style={{ marginBottom: "-3px" }} />
+          </button>
+          <div className='modalContent'>
             <div className='col-md-4'>
                 <input
                     type="text"
@@ -101,11 +71,18 @@ export const AddUser = () => {
             </div>
             <div className='col-md-4'>
                 <button
-                    onClick={addUser}
+                   
                 >
                     Agregar Usuario
                 </button>
             </div>
+          </div>
         </div>
-    )
-}
+      </div>
+      </div>
+      
+    
+  );
+};
+
+export default Modal;
