@@ -6,20 +6,39 @@ import { TaskScreen } from '../components/tasks/TaskScreen'
 import { Navbar } from '../components/ui/Navbar'
 import { AddUser } from '../components/users/AddUser'
 import { UserScreen } from '../components/users/UserScreen'
+import { AuthRoute } from './AuthRoute'
 
 export const DashboardRoute = () => {
     return (
         <div>
             <Navbar />
-            
+
             <Routes>
-            <Route path="proyect" element= { <ProyectScreen />} />
-            <Route path="user" element= { <UserScreen />} />
-            <Route path="task" element= { <TaskScreen />} />
-            <Route path="/" element= { <HomeScreen />} />
-            <Route path="addUser" element={ <AddUser />} />
-            </Routes>
+                <Route path="proyect" element={
+                <AuthRoute>
+                    <ProyectScreen />
+                </AuthRoute>
             
+            } />
+                <Route path="user" element={
+                    <AuthRoute>
+                        <UserScreen />
+                    </AuthRoute>
+                } />
+                <Route path="task" element={
+                    <AuthRoute>
+                        <TaskScreen />
+                    </AuthRoute>
+                } />
+                <Route path="addUser" element={
+                    <AuthRoute>
+                        <AddUser />
+                    </AuthRoute>
+                } />
+
+                <Route path="/" element={<HomeScreen />} />
+            </Routes>
+
         </div>
     )
 }

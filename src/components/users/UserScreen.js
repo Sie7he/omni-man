@@ -2,17 +2,15 @@ import React, {useEffect, useState} from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios';
 //import { getUser } from './UserData';
-import {Modal, TextField, Button} from '@material-ui/core';
-import { makeStyles} from '@material-ui/styles';
-import { Link } from 'react-router-dom';
-
+import Modal from '../modals/Modal';
+import '../modals/modal.css';
 
 
 
 const baseUrl = process.env.REACT_APP_API+'/Administracion/Usuarios/get'
 export const UserScreen = () => {
     
-
+    const [isOpen, setIsOpen] = useState(false);
     const [data,setData]=useState([]);
     const [modalInsertar,setModalInsertar]=useState(false);
     const peticionGet = async() =>{
@@ -60,7 +58,10 @@ export const UserScreen = () => {
     return (  
         <div className='container'> 
             <br></br>
-           <Link to="/addUser">Agregar Usuario</Link>
+            <button className='primaryBtn' onClick={() => setIsOpen(true)}>
+        Agregar Usuario
+      </button>
+      {isOpen && <Modal setIsOpen={setIsOpen} />}
             <br></br>
             <MaterialTable
                 columns={columnas}

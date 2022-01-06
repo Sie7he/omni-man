@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { LoginScreen } from '../components/login/LoginScreen';
+import { AuthRoute } from './AuthRoute';
 import { DashboardRoute } from './DashboardRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
@@ -23,7 +24,9 @@ export const AppRouter = () => {
         <Route path="/*" element={
 
           <PrivateRoute>
+            
             <DashboardRoute />
+            
           </PrivateRoute>
         } />
 
