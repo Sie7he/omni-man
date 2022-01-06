@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import AsyncSelect from 'react-select/async';
 import { useNavigate } from 'react-router-dom';
 
 
