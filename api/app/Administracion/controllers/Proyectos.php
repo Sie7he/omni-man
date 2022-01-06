@@ -90,7 +90,7 @@ class Proyectos extends \pan\Kore\Api{
 		$data = array(
 			'gl_nombre_proyecto' => $params['nombre'],
 			'id_usuario_proyecto' => $params['jp'],
-			'fc_inicio_proyecto' => \Fechas::formatearBaseDatos($params['inicio']),
+			'fc_inicio_proyecto' => $params['inicio'] //\Fechas::formatearBaseDatos($params['inicio']),
 		);
 
 		$id = 0;
