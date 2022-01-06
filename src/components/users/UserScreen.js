@@ -4,15 +4,24 @@ import axios from 'axios';
 //import { getUser } from './UserData';
 import Modal from '../modals/Modal';
 import '../modals/modal.css';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const baseUrl = process.env.REACT_APP_API+'/Administracion/Usuarios/get'
 export const UserScreen = () => {
     
+
+    const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
     const [data,setData]=useState([]);
     const [modalInsertar,setModalInsertar]=useState(false);
+
+
+    const navigateTo = () =>{
+        navigate('/addUser')
+    }
+
     const peticionGet = async() =>{
         await axios.get(baseUrl)
         .then(response =>{
@@ -57,12 +66,11 @@ export const UserScreen = () => {
     
     return (  
         <div className='container'> 
-            <br></br>
-            <button className='primaryBtn' onClick={() => setIsOpen(true)}>
+            
+            <button className='primaryBtn' onClick={navigateTo}>
         Agregar Usuario
       </button>
-      {isOpen && <Modal setIsOpen={setIsOpen} />}
-            <br></br>
+     
             <MaterialTable
                 columns={columnas}
                 editable={{

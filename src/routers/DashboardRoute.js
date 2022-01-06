@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router'
 import { HomeScreen } from '../components/home/HomeScreen'
+import { AddProyect } from '../components/proyects/AddProyect'
 import { ProyectScreen } from '../components/proyects/ProyectScreen'
 import { TaskScreen } from '../components/tasks/TaskScreen'
 import { Navbar } from '../components/ui/Navbar'
@@ -33,6 +34,11 @@ export const DashboardRoute = () => {
                 <Route path="addUser" element={
                     <AuthRoute>
                         <AddUser />
+                    </AuthRoute>
+                } />
+                 <Route path="addProyect" element={
+                    <AuthRoute>
+                        <AddProyect />
                     </AuthRoute>
                 } />
 
