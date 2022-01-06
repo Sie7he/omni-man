@@ -4,7 +4,7 @@ namespace App\Administracion;
 
 
 
-class Proyectos extends \pan\Kore\Controller{
+class Proyectos extends \pan\Kore\Api{
 
 	/**
 	 * Undocumented variable

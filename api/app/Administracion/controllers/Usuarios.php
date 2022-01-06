@@ -163,6 +163,7 @@ class Usuarios extends \pan\Kore\Api{
 		if ($usuarios) {
 			foreach ($usuarios as $usuario) {
 				$response[] = array(
+					'id' => $usuario->id_usuario,
 					'token' => $usuario->gl_token_usuario,
 					'nombres' => $usuario->gl_nombres_usuario,
 					'apellidos' => $usuario->gl_apellidos_usuario,
