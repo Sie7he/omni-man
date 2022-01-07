@@ -116,12 +116,18 @@ class Proyectos extends \pan\Kore\Api{
 	}
 
 
-	public function getHitosProyecto()
+	public function getHitosProyecto($id_proyecto = null)
 	{
-		$inputJSON = file_get_contents('php://input');
-		$params = json_decode($inputJSON, true); 
+		/* $inputJSON = file_get_contents('php://input');
+		$params = json_decode($inputJSON, true);  */
 
-		$id_proyecto = $params['proyecto'];
+		if (is_null($id_proyecto)) {
+			$response = array(
+				'correcto' => false,
+				'mensaje' => 'Peticion no valida'
+			);
+			$this->response->toJson($response); die;
+		}
 
 		$_Hito = new \Entities\Hito;
 
