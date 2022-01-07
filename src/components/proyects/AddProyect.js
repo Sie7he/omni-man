@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router';
 import '../users/users.css';
 
@@ -9,7 +9,8 @@ export const AddProyect = () => {
     const [nombre, setNombre] = useState('');
     const [inicio, setInicio] = useState('');
     const [colaborador, setColaborador] = useState([]);
-    const [jp, setJp] = useState('');
+    const [jp, setJp ] = useState('');
+    const [id, setId ] = useState(null);
 
 
     const getColaborador = async () => {
@@ -17,13 +18,18 @@ export const AddProyect = () => {
         const resp = await fetch(url);
         const data = await resp.json();
         setColaborador(data);
+        console.log(data)
 
     }
 
-    getColaborador();
+    useEffect(() => {
+        getColaborador();
+    }, [])
+    
 
+    
     async function addProyect() {
-        let item = { nombre, jp, inicio };
+        let item = { id, nombre, jp, inicio };
         let result = await fetch(process.env.REACT_APP_API + '/Administracion/Proyectos/save', {
             method: "POST",
             body: JSON.stringify(item)

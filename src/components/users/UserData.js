@@ -15,7 +15,12 @@ export const UserData = () => {
           setUser(JSON.stringify(data));
           console.log('Response: ', user);
         }
-        getUser();
+       useEffect(() => {
+         effect
+         return () => {
+           cleanup
+         }
+       }, [input])
     return <div>{user}</div>
 
 }

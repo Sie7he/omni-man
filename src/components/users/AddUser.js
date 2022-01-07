@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Modal from '../modals/Modal';
 import '../modals/modal.css';
@@ -21,9 +21,15 @@ export const AddUser = () => {
         const resp = await fetch(url);
         const data = await resp.json();
         setValue(data);
+        console.log(data)
     }
 
-    getPerfil();
+
+    useEffect(() => {
+        getPerfil();
+
+    }, [])
+  
 
     async function addUser() {
         let item = { nombres, apellidos, perfil, email, telefono };
