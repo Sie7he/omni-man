@@ -142,6 +142,33 @@ class Proyectos extends \pan\Kore\Api{
 	}
 
 
+	public function saveHito()
+	{
+		$inputJSON = file_get_contents('php://input');
+		$params = json_decode($inputJSON, true); 
+
+		$id_proyecto = $params['proyecto'];
+
+		$_Hito = new \Entities\Hito;
+
+		$response = array();
+
+		$data = array(
+			'gl_nombre_hito' => $params['nombre'],
+			'id_proyecto' => $id_proyecto
+		);
+
+		if ($_Hito->create($data)) {
+			$response['correcto'] = true;
+			$response['mensaje'] = 'Hito guardado';
+		} else {
+			$response['correcto'] = false;
+			$response['mensaje'] = 'Problemas al guardar Hito';
+		}
+
+		$this->response->toJson($response); die;
+	}
+
 
 
 }

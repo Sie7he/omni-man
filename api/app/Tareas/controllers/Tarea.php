@@ -37,7 +37,7 @@ class Tarea extends \pan\Kore\Api{
 		$usuario = $this->_Usuario->where(array('gl_token_usuario' => $token_usuario))->runQuery()->getRows();
 
 		$data = array(
-			'id_usuario_tarea' => $usuario->id_usuario,
+			'id_usuario_tarea' => $params['usuario'],
 			'id_hito_tarea' => $params['hito'],
 			'gl_nombre_tarea' => $params['nombre'],
 			'gl_descripcion_tarea' => $params['descripcion'],
