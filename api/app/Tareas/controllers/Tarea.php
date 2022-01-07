@@ -33,8 +33,8 @@ class Tarea extends \pan\Kore\Api{
 		$this->_Tarea = new \Entities\Tarea;
 		$this->_Usuario = new \Entities\Usuario;
 
-		$token_usuario = $params['token'];
-		$usuario = $this->_Usuario->where(array('gl_token_usuario' => $token_usuario))->runQuery()->getRows();
+		/* $token_usuario = $params['token'];
+		$usuario = $this->_Usuario->where(array('gl_token_usuario' => $token_usuario))->runQuery()->getRows(); */
 
 		$data = array(
 			'id_usuario_tarea' => $params['usuario'],
