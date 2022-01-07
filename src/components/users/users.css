@@ -1,0 +1,84 @@
+
+
+
+
+section{
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: white;
+  
+}
+
+
+.form h2
+{
+    color: grey;
+    position: relative;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+
+}
+
+.form h2::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 80px;
+    height: 4px;
+    background: green;
+}
+
+.form .inputBox
+{
+    width:100%;
+    margin-top: 20px;
+}
+
+.form .inputBox input, select{
+    width: 100%;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    outline: none;
+    color: gray;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 16px;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+}
+
+.form .inputBox input::placeholder
+{
+    color: black;
+}
+
+
+
+.btn-login
+{   
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 16px;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    width: 100%;
+    border-radius: 35px;
+    background: #fff;
+    color: #667;
+    max-width: 100px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-weight: 600;
+
+}
+

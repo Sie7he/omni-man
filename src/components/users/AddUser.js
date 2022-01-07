@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Modal from '../modals/Modal';
 import '../modals/modal.css';
+import './users.css';
 
 export const AddUser = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,7 @@ export const AddUser = () => {
  
 
     const getPerfil = async () => {
-        const url = process.env.REACT_APP_API + '/Usuario/Perfiles/get'
+        const url = process.env.REACT_APP_API + '/Usuario/Perfiles/get';
         const resp = await fetch(url);
         const data = await resp.json();
         setValue(data);
@@ -41,20 +42,14 @@ export const AddUser = () => {
     }
 
     return (
-        <div>
-
-           
-            
-
-  
+        <section>
+        
+        <div className='box'>
       
-      <button className='primaryBtn' onClick={() => setIsOpen(true)}>
-        Open Modal
-      </button>
-      {isOpen && <Modal setIsOpen={setIsOpen} />}
-      
-
-            <div className='col-md-4'>
+      <div className="contenedor-login">
+                <div className="form">
+                <h2>Agregar Usuario</h2>
+            <div className='inputBox'>
                 <input
                     type="text"
                     name="nombres"
@@ -63,7 +58,7 @@ export const AddUser = () => {
 
                 />
             </div>
-            <div className='col-md-4'>
+            <div className='inputBox'>
                 <input
                     type="text"
                     name="apellidos"
@@ -72,16 +67,16 @@ export const AddUser = () => {
 
                 />
             </div>
-            <div className='col-md-4'>
+            <div className='inputBox'>
                 <input
                     type="text"
                     name="telefono"
-                    placeholder="telefono"
+                    placeholder="Telefono"
                     onChange={(e) => setTelefono(e.target.value)}
 
                 />
             </div>
-            <div className='col-md-4'>
+            <div className='inputBox'>
                 <input
                     type="email"
                     name="email"
@@ -90,7 +85,7 @@ export const AddUser = () => {
 
                 />
             </div>
-            <div className='col-md-4'>
+            <div className='inputBox'>
             <select onChange={(e) => setPerfil(e.target.value)}>
                     <option >Elegir perfil...</option>
                 {value.map((option) => (
@@ -99,13 +94,17 @@ export const AddUser = () => {
             </select>
 
             </div>
-            <div className='col-md-4'>
+            <div className='inputBox'>
                 <button
                     onClick={addUser}
+                    className='btn-login'
                 >
-                    Agregar Usuario
+                    Guardar
                 </button>
             </div>
         </div>
+        </div>
+                    </div>
+                    </section>
     )
 }
