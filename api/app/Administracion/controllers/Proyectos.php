@@ -133,7 +133,7 @@ class Proyectos extends \pan\Kore\Api{
 				$response[] = array(
 					'id' => $h->id_hito,
 					'proyecto' => $h->id_proyecto,
-					'nombre' => $h->gl_nombre_proyecto
+					'nombre' => $h->gl_nombre_hito
 				);
 			}
 		}
