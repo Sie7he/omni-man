@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios';
 //import { getUser } from './UserData';
@@ -8,35 +8,35 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const baseUrl = process.env.REACT_APP_API+'/Administracion/Usuarios/get'
+const baseUrl = process.env.REACT_APP_API + '/Administracion/Usuarios/get'
 export const UserScreen = () => {
-    
+
 
     const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
-    const [data,setData]=useState([]);
-    const [modalInsertar,setModalInsertar]=useState(false);
+    const [data, setData] = useState([]);
+    const [modalInsertar, setModalInsertar] = useState(false);
 
 
-    const navigateTo = () =>{
+    const navigateTo = () => {
         navigate('/addUser')
     }
 
-    const peticionGet = async() =>{
+    const peticionGet = async () => {
         await axios.get(baseUrl)
-        .then(response =>{
-            setData(response.data); 
-            //console.log(response.data);       
-        })
+            .then(response => {
+                setData(response.data);
+                //console.log(response.data);       
+            })
     }
 
-    useEffect(() =>{
+    useEffect(() => {
         peticionGet();
 
     }, [])
 
 
-    const  columnas =[
+    const columnas = [
         {
             title: 'Id',
             field: 'perfil_id',
@@ -63,37 +63,37 @@ export const UserScreen = () => {
             field: 'token',
         },
     ];
-    
-    return (  
-        <div className='container'> 
-            
+
+    return (
+        <div className='container'>
+
             <button className='primaryBtn' onClick={navigateTo}>
-        Agregar Usuario
-      </button>
-     
+                Agregar Usuario
+            </button>
+
             <MaterialTable
                 columns={columnas}
                 editable={{
-                    onRowAdd:(newRow) => new Promise((resolve,reject) => {
+                    onRowAdd: (newRow) => new Promise((resolve, reject) => {
 
                     })
                 }}
                 data={data}
-                title= 'Gestión de usuarios'
+                title='Gestión de usuarios'
                 actions={[
                     {
-                    icon:'edit',
-                    tooltip: 'Editar',
-                    onClick: (event,rowData) => alert('has presionado editar ' + rowData.artista)
-                   },
-                   {
-                    icon:'delete',
-                    tooltip: 'Eliminar',
-                    onClick: (event,rowData) => alert('has presionado Eliminar ' + rowData.artista)
-                   },
+                        icon: 'edit',
+                        tooltip: 'Editar',
+                        onClick: (event, rowData) => alert('has presionado editar ' + rowData.artista)
+                    },
+                    {
+                        icon: 'delete',
+                        tooltip: 'Eliminar',
+                        onClick: (event, rowData) => alert('has presionado Eliminar ' + rowData.artista)
+                    },
                 ]}
-                options={{actionsColumnIndex: -1}}
+                options={{ actionsColumnIndex: -1 }}
             />
         </div>
-     )
+    )
 }
